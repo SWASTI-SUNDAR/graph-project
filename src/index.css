@@ -1,0 +1,12 @@
+@import "tailwindcss";
+
+@theme {
+  --color-navy: #13325b;
+  --color-brand-orange: #f47b2a;
+  --color-page: #e4e5e7;
+  --font-sans: "Open Sans", ui-sans-serif, system-ui, sans-serif;
+}
+
+body {
+  @apply bg-page text-navy font-sans antialiased;
+}

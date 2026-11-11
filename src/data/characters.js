@@ -1,8 +1,30 @@
-// Drop the character images into public/characters/ using these file names
+// cardImage: character + orange outline shown on the selection screen (public/images/characters/)
+// image: round portrait used in the flowchart badge (dummy for now)
 export const characters = [
-  { id: 'children', label: 'Children', subLabel: '(9 months to 4 years)', image: '/characters/children.svg' },
-  { id: 'adults', label: 'Adults', image: '/characters/adults.svg' },
-  { id: 'menstruating', label: 'Menstruating individuals', image: '/characters/menstruating.svg' },
-  { id: 'pregnant', label: 'Pregnant individuals', image: '/characters/pregnant.svg' },
-  { id: 'inflammation', label: 'Anemia of inflammation', image: '/characters/inflammation.svg' },
+  {
+    id: 'children',
+    label: 'Children',
+    subLabel: '(9 months to 4 years)',
+    cardImage: '/images/characters/children.png',
+    image: '/characters/children.svg',
+  },
+  { id: 'adults', label: 'Adults', cardImage: '/images/characters/adults.png', image: '/characters/adults.svg' },
+  {
+    id: 'menstruating',
+    label: 'Menstruating individuals',
+    cardImage: '/images/characters/menstruating.png',
+    image: '/characters/menstruating.svg',
+  },
+  {
+    id: 'pregnant',
+    label: 'Pregnant individuals',
+    cardImage: '/images/characters/pregnant.png',
+    image: '/characters/pregnant.svg',
+  },
+  {
+    id: 'inflammation',
+    label: 'Anemia of inflammation',
+    cardImage: '/images/characters/inflammation.png',
+    image: '/characters/inflammation.svg',
+  },
 ]

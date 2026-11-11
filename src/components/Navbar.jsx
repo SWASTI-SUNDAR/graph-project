@@ -1,35 +1,31 @@
-import { Link, NavLink, useLocation } from 'react-router-dom'
+import { useState } from 'react'
+import { Link, NavLink } from 'react-router-dom'
+import { images } from '../data/images'
 
-const centerLinks = [
+const links = [
   { to: '/algorithm', label: 'Algorithm' },
   { to: '/cases', label: 'Cases' },
-]
-
-const rightLinks = [
   { to: '/abbreviations', label: 'Abbreviations' },
   { to: '/resources', label: 'Useful resources' },
 ]
 
 export default function Navbar() {
-  const { pathname } = useLocation()
+  const [open, setOpen] = useState(false)
 
   return (
-    <header className="relative z-20 flex items-start justify-between gap-3 px-4 pt-3 md:px-8">
-      <Link to="/" className="flex shrink-0 items-center gap-8">
-        {/* Logo placeholder – swap for ASH logo asset */}
-        <div className="flex h-14 w-14 items-center justify-center rounded-full bg-white text-xs font-bold text-red-700 shadow sm:h-20 sm:w-20 md:h-24 md:w-24">
-          LOGO
-        </div>
-        {pathname !== '/' && <span className="hidden text-xl font-bold uppercase lg:inline">ASH ID algorithm</span>}
+    <header className="relative z-20 flex items-start justify-between gap-4 px-2 pt-2 lg:px-[0.6vw] lg:pt-[0.5vw]">
+      <Link to="/" className="flex shrink-0 items-center" onClick={() => setOpen(false)}>
+        <img src={images.logo} alt="American Society of Hematology" className="aspect-square w-14 object-contain sm:w-[4.5rem] lg:w-[7vw]" />
+        <img src={images.idAlgorithmLogo} alt="ID Algorithm" className="aspect-[5.8] w-32 object-contain sm:w-40 lg:w-[15.5vw]" />
       </Link>
 
-      <nav className="mt-3 flex shrink-0 overflow-hidden rounded-full bg-navy text-xs sm:mt-6 sm:text-sm font-bold text-white">
-        {centerLinks.map((link, i) => (
+      <nav className="mt-[1.6vw] hidden items-center pr-[2vw] text-[1.2vw] font-semibold text-white lg:flex">
+        {links.map((link, i) => (
           <NavLink
             key={link.to}
             to={link.to}
             className={({ isActive }) =>
-              `px-4 py-2 sm:px-6 md:px-10 ${i > 0 ? 'border-l border-white/70' : ''} ${isActive ? 'bg-white/15' : 'hover:bg-white/10'}`
+              `px-[2.4vw] py-[0.5vw] ${i > 0 ? 'border-l-2 border-white' : ''} ${isActive ? 'underline underline-offset-4' : 'hover:underline underline-offset-4'}`
             }
           >
             {link.label}
@@ -37,13 +33,32 @@ export default function Navbar() {
         ))}
       </nav>
 
-      <nav className="mt-6 hidden gap-10 font-bold text-white md:flex">
-        {rightLinks.map((link) => (
-          <NavLink key={link.to} to={link.to} className="hover:underline">
-            {link.label}
-          </NavLink>
-        ))}
-      </nav>
+      <button
+        type="button"
+        onClick={() => setOpen((o) => !o)}
+        className="mt-3 rounded-md bg-navy p-2 text-white lg:hidden"
+        aria-label="Toggle menu"
+        aria-expanded={open}
+      >
+        <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+          {open ? <path d="M6 6l12 12M18 6L6 18" /> : <path d="M4 7h16M4 12h16M4 17h16" />}
+        </svg>
+      </button>
+
+      {open && (
+        <nav className="absolute right-2 top-16 flex w-56 flex-col overflow-hidden rounded-lg bg-navy font-semibold text-white shadow-lg lg:hidden">
+          {links.map((link) => (
+            <NavLink
+              key={link.to}
+              to={link.to}
+              onClick={() => setOpen(false)}
+              className={({ isActive }) => `px-5 py-3 ${isActive ? 'bg-white/15' : 'hover:bg-white/10'}`}
+            >
+              {link.label}
+            </NavLink>
+          ))}
+        </nav>
+      )}
     </header>
   )
 }

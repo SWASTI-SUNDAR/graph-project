@@ -5,8 +5,42 @@
   --color-brand-orange: #f47b2a;
   --color-page: #e4e5e7;
   --font-sans: "Open Sans", ui-sans-serif, system-ui, sans-serif;
+
+  --ease-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  --animate-page-in: page-in 700ms var(--ease-soft) both;
+
+  @keyframes page-in {
+    from {
+      opacity: 0;
+      transform: translateY(16px) scale(0.98);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
 }
 
 body {
   @apply bg-page text-navy font-sans antialiased;
+}
+
+/* Page transition: the selected character morphs into the flowchart badge, the rest crossfades */
+::view-transition-group(character-hero) {
+  animation-duration: 750ms;
+  animation-timing-function: var(--ease-soft);
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 550ms;
+  animation-timing-function: var(--ease-soft);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
 }

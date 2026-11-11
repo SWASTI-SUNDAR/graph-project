@@ -8,7 +8,12 @@ export default function CharacterBadge({ character, x, y, certainty }) {
       </svg>
 
       <div className="relative mx-auto h-[94px] w-[94px] overflow-hidden rounded-full border-2 border-navy bg-white p-1">
-        <img src={character.image} alt={character.label} className="h-full w-full rounded-full object-cover" />
+        <img
+          src={character.image}
+          alt={character.label}
+          style={{ viewTransitionName: 'character-hero' }}
+          className="h-full w-full rounded-full object-cover"
+        />
       </div>
 
       <div className="relative mt-2 flex flex-col items-center px-2 text-center text-[10.5px] font-bold leading-tight text-white">

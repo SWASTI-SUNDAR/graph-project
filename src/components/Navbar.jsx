@@ -14,17 +14,17 @@ export default function Navbar() {
   const [open, setOpen] = useState(false)
 
   return (
-    <header className="relative z-20 flex items-start justify-between gap-4 px-2 pt-2 lg:block lg:h-[calc(var(--u)*158)] lg:p-0">
+    <header className="relative z-20 flex items-center justify-between gap-3 px-3 py-[1.2vh] lg:block lg:h-[calc(var(--u)*158)] lg:p-0">
       <Link to="/" className="flex shrink-0 items-center lg:block" onClick={() => setOpen(false)}>
         <img
           src={images.logo}
           alt="American Society of Hematology"
-          className="aspect-square w-14 object-contain sm:w-[4.5rem] lg:absolute lg:left-[calc(var(--u)*14)] lg:top-[calc(var(--u)*8)] lg:w-[calc(var(--u)*152)]"
+          className="aspect-square h-[clamp(48px,7.5vh,84px)] w-auto object-contain lg:absolute lg:h-auto lg:left-[calc(var(--u)*14)] lg:top-[calc(var(--u)*8)] lg:w-[calc(var(--u)*152)]"
         />
         <img
           src={images.idAlgorithmLogo}
           alt="ID Algorithm"
-          className="aspect-[792/136] w-32 object-contain sm:w-40 lg:absolute lg:left-[calc(var(--u)*170)] lg:top-[calc(var(--u)*44)] lg:w-[calc(var(--u)*335)]"
+          className="aspect-[792/136] h-[clamp(20px,3vh,34px)] w-auto object-contain lg:absolute lg:h-auto lg:left-[calc(var(--u)*170)] lg:top-[calc(var(--u)*44)] lg:w-[calc(var(--u)*335)]"
         />
       </Link>
 
@@ -45,7 +45,7 @@ export default function Navbar() {
       <button
         type="button"
         onClick={() => setOpen((o) => !o)}
-        className="mt-3 rounded-md bg-navy p-2 text-white lg:hidden"
+        className="self-start rounded-md bg-navy p-2 text-white lg:hidden"
         aria-label="Toggle menu"
         aria-expanded={open}
       >
@@ -55,7 +55,7 @@ export default function Navbar() {
       </button>
 
       {open && (
-        <nav className="absolute right-2 top-16 flex w-56 flex-col overflow-hidden rounded-lg bg-navy font-semibold text-white shadow-lg lg:hidden">
+        <nav className="absolute right-3 top-[75%] flex w-56 flex-col overflow-hidden rounded-lg bg-navy font-semibold text-white shadow-lg lg:hidden">
           {links.map((link) => (
             <NavLink
               key={link.to}

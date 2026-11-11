@@ -9,7 +9,7 @@ export default function Layout() {
       <img
         src={images.topDecoration}
         alt=""
-        className="pointer-events-none absolute right-0 top-0 w-[max(58vw,300px)] lg:w-[calc(var(--u)*1085)]"
+        className="pointer-events-none absolute right-0 top-0 h-[clamp(50px,8vh,96px)] w-[42vw] object-fill sm:w-[52vw] lg:h-auto lg:w-[calc(var(--u)*1085)]"
       />
       <img src={images.bottomDecoration} alt="" className="pointer-events-none absolute bottom-0 left-0 w-full" />
 

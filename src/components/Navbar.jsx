@@ -1,17 +1,39 @@
 import { useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { images } from '../data/images'
+import Modal from './modals/Modal'
+import AbbreviationsContent from './modals/AbbreviationsContent'
+import ResourcesContent from './modals/ResourcesContent'
 
+// Items with `modal` open a popup over the current page instead of navigating
 const links = [
   { to: '/algorithm', label: 'Algorithm' },
   { to: '/cases', label: 'Cases' },
-  { to: '/abbreviations', label: 'Abbreviations' },
-  { to: '/resources', label: 'Useful resources' },
+  { modal: 'abbreviations', label: 'Abbreviations' },
+  { modal: 'resources', label: 'Useful resources' },
 ]
+
+const modals = {
+  abbreviations: { title: 'Abbreviations', Content: AbbreviationsContent },
+  resources: { title: 'Useful Resources', Content: ResourcesContent },
+}
 
 // Desktop sizes use --u (1 design px, see index.css) so the header matches the design exactly
 export default function Navbar() {
   const [open, setOpen] = useState(false)
+  const [modal, setModal] = useState(null)
+
+  const openModal = (key) => {
+    setOpen(false)
+    setModal(key)
+  }
+
+  const desktopItem = (active, i) =>
+    `px-[calc(var(--u)*47)] leading-[calc(var(--u)*37)] last:pr-0 cursor-pointer ${i > 0 ? 'border-l-2 border-white' : ''} ${active ? 'underline underline-offset-4' : 'hover:underline underline-offset-4'}`
+
+  const mobileItem = (active) => `px-5 py-3 text-left ${active ? 'bg-white/15' : 'hover:bg-white/10'}`
+
+  const ActiveModal = modal && modals[modal]
 
   return (
     <header className="relative z-20 flex items-center justify-between gap-3 px-3 py-[1.2vh] lg:block lg:h-[calc(var(--u)*158)] lg:p-0">
@@ -29,17 +51,17 @@ export default function Navbar() {
       </Link>
 
       <nav className="hidden font-semibold text-white lg:absolute lg:right-[calc(var(--u)*62)] lg:top-[calc(var(--u)*40)] lg:flex lg:text-[calc(var(--u)*21)]">
-        {links.map((link, i) => (
-          <NavLink
-            key={link.to}
-            to={link.to}
-            className={({ isActive }) =>
-              `px-[calc(var(--u)*47)] leading-[calc(var(--u)*37)] last:pr-0 ${i > 0 ? 'border-l-2 border-white' : ''} ${isActive ? 'underline underline-offset-4' : 'hover:underline underline-offset-4'}`
-            }
-          >
-            {link.label}
-          </NavLink>
-        ))}
+        {links.map((link, i) =>
+          link.modal ? (
+            <button key={link.modal} type="button" onClick={() => openModal(link.modal)} className={desktopItem(modal === link.modal, i)}>
+              {link.label}
+            </button>
+          ) : (
+            <NavLink key={link.to} to={link.to} className={({ isActive }) => desktopItem(isActive, i)}>
+              {link.label}
+            </NavLink>
+          ),
+        )}
       </nav>
 
       <button
@@ -56,17 +78,24 @@ export default function Navbar() {
 
       {open && (
         <nav className="absolute right-3 top-[75%] flex w-56 flex-col overflow-hidden rounded-lg bg-navy font-semibold text-white shadow-lg lg:hidden">
-          {links.map((link) => (
-            <NavLink
-              key={link.to}
-              to={link.to}
-              onClick={() => setOpen(false)}
-              className={({ isActive }) => `px-5 py-3 ${isActive ? 'bg-white/15' : 'hover:bg-white/10'}`}
-            >
-              {link.label}
-            </NavLink>
-          ))}
+          {links.map((link) =>
+            link.modal ? (
+              <button key={link.modal} type="button" onClick={() => openModal(link.modal)} className={mobileItem(false)}>
+                {link.label}
+              </button>
+            ) : (
+              <NavLink key={link.to} to={link.to} onClick={() => setOpen(false)} className={({ isActive }) => mobileItem(isActive)}>
+                {link.label}
+              </NavLink>
+            ),
+          )}
         </nav>
+      )}
+
+      {ActiveModal && (
+        <Modal title={ActiveModal.title} onClose={() => setModal(null)}>
+          <ActiveModal.Content />
+        </Modal>
       )}
     </header>
   )

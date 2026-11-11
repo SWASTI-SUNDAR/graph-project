@@ -11,6 +11,21 @@
 
   /* backwards fill: only holds the start state during the delay, then lets go of transform */
   --animate-rise-in: rise-in 750ms var(--ease-soft) backwards;
+  --animate-fade-in: fade-in 300ms ease-out backwards;
+  --animate-modal-in: modal-in 450ms var(--ease-soft) backwards;
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+  }
+
+  @keyframes modal-in {
+    from {
+      opacity: 0;
+      transform: translateY(24px) scale(0.96);
+    }
+  }
 
   @keyframes rise-in {
     from {

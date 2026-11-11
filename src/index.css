@@ -14,6 +14,51 @@
   --animate-fade-in: fade-in 300ms ease-out backwards;
   --animate-modal-in: modal-in 450ms var(--ease-soft) backwards;
 
+  /* Home page: gentle entrances + an idle float */
+  --animate-fade-up: fade-up 900ms var(--ease-soft) backwards;
+  --animate-zoom-in: zoom-in 1200ms var(--ease-soft) backwards;
+  --animate-float: float 7s ease-in-out infinite;
+  --animate-slide-from-right: slide-from-right 1200ms var(--ease-soft) backwards;
+  --animate-slide-from-left: slide-from-left 1200ms var(--ease-soft) backwards;
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+  }
+
+  @keyframes zoom-in {
+    from {
+      opacity: 0;
+      transform: scale(0.94);
+    }
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  @keyframes slide-from-right {
+    from {
+      opacity: 0;
+      transform: translateX(8%);
+    }
+  }
+
+  @keyframes slide-from-left {
+    from {
+      opacity: 0;
+      transform: translateX(-8%);
+    }
+  }
+
   @keyframes fade-in {
     from {
       opacity: 0;

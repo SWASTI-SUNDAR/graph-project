@@ -50,7 +50,10 @@ export default function Navbar() {
         />
       </Link>
 
-      <nav className="hidden font-semibold text-white lg:absolute lg:right-[calc(var(--u)*62)] lg:top-[calc(var(--u)*40)] lg:flex lg:text-[calc(var(--u)*21)]">
+      {/* Fades in after the orange shape slides in, so the white text is never on the grey */}
+      <nav
+        style={{ animationDuration: '700ms', animationDelay: '500ms' }}
+        className="motion-safe:animate-fade-in hidden font-semibold text-white lg:absolute lg:right-[calc(var(--u)*62)] lg:top-[calc(var(--u)*40)] lg:flex lg:text-[calc(var(--u)*21)]">
         {links.map((link, i) =>
           link.modal ? (
             <button key={link.modal} type="button" onClick={() => openModal(link.modal)} className={desktopItem(modal === link.modal, i)}>

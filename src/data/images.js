@@ -2,9 +2,7 @@
 export const images = {
   logo: '/images/ash-logo.png',
   idAlgorithmLogo: '/images/id-algorithm-logo.png',
-  topRightShape: '/images/top-right-shape.png',
-  topRightLine: '/images/top-right-line.png',
-  bottomLeftShape: '/images/bottom-left-shape.png',
-  bottomLine: '/images/bottom-line.png',
+  topDecoration: '/images/top-decoration.png',
+  bottomDecoration: '/images/bottom-decoration.png',
   doctors: '/images/doctors.png',
 }

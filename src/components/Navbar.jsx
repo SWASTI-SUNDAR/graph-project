@@ -9,23 +9,32 @@ const links = [
   { to: '/resources', label: 'Useful resources' },
 ]
 
+// Desktop sizes use --u (1 design px, see index.css) so the header matches the design exactly
 export default function Navbar() {
   const [open, setOpen] = useState(false)
 
   return (
-    <header className="relative z-20 flex items-start justify-between gap-4 px-2 pt-2 lg:px-[0.6vw] lg:pt-[0.5vw]">
-      <Link to="/" className="flex shrink-0 items-center" onClick={() => setOpen(false)}>
-        <img src={images.logo} alt="American Society of Hematology" className="aspect-square w-14 object-contain sm:w-[4.5rem] lg:w-[7vw]" />
-        <img src={images.idAlgorithmLogo} alt="ID Algorithm" className="aspect-[5.8] w-32 object-contain sm:w-40 lg:w-[15.5vw]" />
+    <header className="relative z-20 flex items-start justify-between gap-4 px-2 pt-2 lg:block lg:h-[calc(var(--u)*158)] lg:p-0">
+      <Link to="/" className="flex shrink-0 items-center lg:block" onClick={() => setOpen(false)}>
+        <img
+          src={images.logo}
+          alt="American Society of Hematology"
+          className="aspect-square w-14 object-contain sm:w-[4.5rem] lg:absolute lg:left-[calc(var(--u)*14)] lg:top-[calc(var(--u)*8)] lg:w-[calc(var(--u)*152)]"
+        />
+        <img
+          src={images.idAlgorithmLogo}
+          alt="ID Algorithm"
+          className="aspect-[792/136] w-32 object-contain sm:w-40 lg:absolute lg:left-[calc(var(--u)*170)] lg:top-[calc(var(--u)*44)] lg:w-[calc(var(--u)*335)]"
+        />
       </Link>
 
-      <nav className="mt-[1.6vw] hidden items-center pr-[2vw] text-[1.2vw] font-semibold text-white lg:flex">
+      <nav className="hidden font-semibold text-white lg:absolute lg:right-[calc(var(--u)*62)] lg:top-[calc(var(--u)*40)] lg:flex lg:text-[calc(var(--u)*21)]">
         {links.map((link, i) => (
           <NavLink
             key={link.to}
             to={link.to}
             className={({ isActive }) =>
-              `px-[2.4vw] py-[0.5vw] ${i > 0 ? 'border-l-2 border-white' : ''} ${isActive ? 'underline underline-offset-4' : 'hover:underline underline-offset-4'}`
+              `px-[calc(var(--u)*47)] leading-[calc(var(--u)*37)] last:pr-0 ${i > 0 ? 'border-l-2 border-white' : ''} ${isActive ? 'underline underline-offset-4' : 'hover:underline underline-offset-4'}`
             }
           >
             {link.label}

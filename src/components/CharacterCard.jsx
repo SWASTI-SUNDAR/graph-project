@@ -17,7 +17,7 @@ export default function CharacterCard({ character, status = 'idle', offset = 0, 
       to={`/algorithm/${character.id}`}
       onClick={(e) => onSelect?.(e, character.id)}
       style={style}
-      className={`group relative flex w-40 flex-col items-center text-center transition-[transform,opacity] ease-soft will-change-transform sm:w-44 lg:w-[min(12.5vw,25vh)] ${
+      className={`group relative flex w-40 flex-col items-center text-center transition-[transform,opacity] ease-soft will-change-transform sm:w-44 lg:w-[calc(var(--u)*255)] ${
         selected ? 'z-10 duration-[850ms]' : ''
       } ${hidden ? 'pointer-events-none opacity-0 duration-[550ms]' : ''}`}
     >
@@ -34,7 +34,7 @@ export default function CharacterCard({ character, status = 'idle', offset = 0, 
       </div>
 
       <p
-        className={`mt-[clamp(0.5rem,min(1.3vw,2.4vh),1.75rem)] text-[clamp(0.95rem,min(1.15vw,2.1vh),1.6rem)] font-bold leading-snug transition-opacity duration-500 ease-soft ${
+        className={`mt-3 whitespace-pre-line text-base font-bold leading-snug lg:mt-[calc(var(--u)*16)] lg:text-[calc(var(--u)*24)] lg:leading-[calc(var(--u)*32)] transition-opacity duration-500 ease-soft ${
           selected ? 'opacity-0 delay-[600ms]' : ''
         }`}
       >

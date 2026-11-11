@@ -21,6 +21,11 @@
   }
 }
 
+/* 1 design pixel: the 1868x1052 design scaled to fit the screen's width or height */
+:root {
+  --u: min(calc(100vw / 1868), calc(100vh / 1052));
+}
+
 body {
   @apply bg-page text-navy font-sans antialiased;
 }

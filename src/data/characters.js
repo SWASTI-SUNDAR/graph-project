@@ -11,19 +11,19 @@ export const characters = [
   { id: 'adults', label: 'Adults', cardImage: '/images/characters/adults.png', image: '/characters/adults.svg' },
   {
     id: 'menstruating',
-    label: 'Menstruating individuals',
+    label: 'Menstruating\nindividuals',
     cardImage: '/images/characters/menstruating.png',
     image: '/characters/menstruating.svg',
   },
   {
     id: 'pregnant',
-    label: 'Pregnant individuals',
+    label: 'Pregnant\nindividuals',
     cardImage: '/images/characters/pregnant.png',
     image: '/characters/pregnant.svg',
   },
   {
     id: 'inflammation',
-    label: 'Anemia of inflammation',
+    label: 'Anemia of\ninflammation',
     cardImage: '/images/characters/inflammation.png',
     image: '/characters/inflammation.svg',
   },

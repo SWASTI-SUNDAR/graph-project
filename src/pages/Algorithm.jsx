@@ -30,14 +30,14 @@ export default function Algorithm() {
   const statusOf = (id) => (!selected ? 'idle' : selected.id === id ? 'selected' : 'hidden')
 
   return (
-    <section className="animate-page-in px-6 pt-[clamp(1.5rem,min(4vw,7vh),5rem)] text-center">
+    <section className="animate-page-in px-6 pt-6 lg:pl-0 lg:pr-[calc(var(--u)*38)] lg:pt-[calc(var(--u)*127)] text-center">
       <p
-        className={`text-[clamp(0.95rem,min(1.25vw,2.3vh),1.75rem)] transition-[opacity,transform] duration-500 ease-soft ${selected ? '-translate-y-2 opacity-0' : ''}`}
+        className={`text-base lg:text-[calc(var(--u)*26)] lg:leading-[calc(var(--u)*34)] transition-[opacity,transform] duration-500 ease-soft ${selected ? '-translate-y-2 opacity-0' : ''}`}
       >
         Select each character to navigate to that section.
       </p>
 
-      <div className="mt-[clamp(1.5rem,min(3vw,5.5vh),4rem)] flex flex-wrap items-start justify-center gap-x-[3.5vw] gap-y-10">
+      <div className="mt-8 lg:mt-[calc(var(--u)*69)] flex flex-wrap items-start justify-center gap-x-6 lg:gap-x-[calc(var(--u)*67)] gap-y-10">
         {characters.map((c, i) => (
           <CharacterCard
             key={c.id}
